@@ -34,7 +34,7 @@ public class LlmService {
 
         // Limit to first 5 articles for performance
         List<ArticleDto> articlesToProcess = articles.stream()
-                .limit(5)
+                .limit(10)
                 .toList();
 
         System.out.println("Processing " + articlesToProcess.size() + " articles for summarization...");
@@ -132,7 +132,7 @@ public class LlmService {
             }
         } catch (Exception e) {
             // If single JSON parsing fails, try NDJSON parsing
-            String[] lines = response.split("\n");
+           /* String[] lines = response.split("\n");
             for (String line : lines) {
                 if (line.trim().isEmpty()) continue;
                 try {
@@ -144,8 +144,8 @@ public class LlmService {
                     System.err.println("Failed to parse line: " + line);
                 }
             }
+        */
         }
-
         return summaryBuilder.toString().trim();
     }
 }
